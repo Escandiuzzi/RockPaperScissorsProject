@@ -16,6 +16,10 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject[] buttons;
 
+    [SerializeField]
+    GameObject player_selected_card;
+    [SerializeField]
+    GameObject ia_selected_card;
 
 
     void Start()
@@ -47,6 +51,22 @@ public class GameManager : MonoBehaviour
             player.ShowCards();
         }
 
+    }
+
+    public GameObject GetSelectedCard(int index)
+    {
+        if (index == 0)
+            return player_selected_card;
+        else
+            return ia_selected_card;
+    }
+
+    public void SetSelectedCard(int index, GameObject card)
+    {
+        if (index == 0)
+            player_selected_card = card;
+        else
+            ia_selected_card = card;
     }
 
 }
