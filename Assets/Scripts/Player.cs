@@ -44,6 +44,7 @@ public class Player : MonoBehaviour
     public void SelectedCard(Card card)
     {
         deck.Remove(card);
+        card_count--;
     }
 
 

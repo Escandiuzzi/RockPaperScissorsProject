@@ -177,19 +177,27 @@ public class GameManager : MonoBehaviour
         else if (iaScore >= 2)
         {
             finalresultPanel.SetActive(true);
-            Color32 color = new Color32(32, 0, 0, 1);
-
-            finalresultPanel.GetComponent<Image>().color = color;
             final_score_text.text = "YOU LOSE";
         }
 
         else if (player.GetPlayerCardCount() == 0 && ia.GetIACardCount() == 0)
         {
-            finalresultPanel.SetActive(true);
-            Color32 color = new Color32(32, 32, 32, 1);
+            if (playerScore > iaScore)
+            {
+                finalresultPanel.SetActive(true);
+                final_score_text.text = "YOU WIN";
+            }
 
-            finalresultPanel.GetComponent<Image>().color = color;
-            final_score_text.text = "DRAW";
+            else if (playerScore < iaScore)
+            {
+                finalresultPanel.SetActive(true);
+                final_score_text.text = "YOU LOSE";
+            }
+            else
+            {
+                finalresultPanel.SetActive(true);
+                final_score_text.text = "DRAW";
+            }
         }
     }
 
