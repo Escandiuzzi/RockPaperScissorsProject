@@ -6,20 +6,26 @@ using UnityEngine.UI;
 public class Card : MonoBehaviour
 {
     [SerializeField]
-    GameManager gameManager;
+    Sprite[] sprites;
 
     [SerializeField]
-    Sprite card_sprite;
+    GameManager gameManager;
+
     [SerializeField]
     int defeat;
     [SerializeField]
     int losses;
+    [SerializeField]
+    int id;
 
 
     string name;
     bool started;
     bool move;
     Vector3 startPosition;
+
+    Vector3 selected_position;
+
 
     public void Start()
     {
@@ -30,13 +36,13 @@ public class Card : MonoBehaviour
     {
         if (move)
         {
-            if (Vector3.Distance(gameObject.transform.position, new Vector3(0, 0)) > .01f)
+            if (Vector3.Distance(gameObject.transform.position, selected_position) > .01f)
             {
-                transform.position = Vector3.Lerp(transform.position, new Vector3(0, 0), .05f);
+                transform.position = Vector3.Lerp(transform.position, selected_position, .05f);
             }
             else
             {
-                transform.position = new Vector3(0, 0);
+                transform.position = selected_position;
                 move = false;
             }
         }
@@ -44,23 +50,28 @@ public class Card : MonoBehaviour
 
     void OnMouseDown()
     {
-        if(started)
-            SelectCard();
+        if (started)
+            SelectCard(0);
     }
 
 
-    public void InitializeCard(Sprite sprite, int id)
+    public void InitializeCard(int _id, Vector3 pos)
     {
-        GetComponent<SpriteRenderer>().sprite = sprite;
+        selected_position = pos;
+
+        id = _id;
+
+        GetComponent<SpriteRenderer>().sprite = sprites[_id];
         GetComponent<SpriteRenderer>().enabled = false;
 
-        if (id == 0)
+
+        if (_id == 0)
         {
             defeat = 2;
             losses = 1;
             name = "Rock";
         }
-        else if (id == 1)
+        else if (_id == 1)
         {
             defeat = 0;
             losses = 2;
@@ -81,17 +92,20 @@ public class Card : MonoBehaviour
         started = true;
     }
 
-    public void SelectCard()
+    public void SelectCard(int index)
     {
-        if (gameManager.GetSelectedCard(0) == null)
+        if (gameManager.GetSelectedCard(index) == null)
         {
-            gameManager.SetSelectedCard(0, gameObject);
+            gameManager.SetSelectedCard(index, gameObject);
 
             move = true;
         }
 
     }
 
-
+    public int GetID()
+    {
+        return id;
+    }
 
 }

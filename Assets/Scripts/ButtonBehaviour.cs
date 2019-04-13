@@ -5,12 +5,12 @@ using UnityEngine;
 public class ButtonBehaviour : MonoBehaviour
 {
     [SerializeField]
-    Sprite[] sprites;
-
-    [SerializeField]
     GameObject player;
     [SerializeField]
     GameObject prefab;
+
+    [SerializeField]
+    Vector3 position;
 
 
     void Start()
@@ -23,7 +23,7 @@ public class ButtonBehaviour : MonoBehaviour
         GameObject new_card = Instantiate(prefab, new Vector2(0,0), Quaternion.identity);
         player.GetComponent<Player>().SetCard(new_card.GetComponent<Card>());
         new_card.transform.parent = player.transform;
-        new_card.GetComponent<Card>().InitializeCard(sprites[id], id);
+        new_card.GetComponent<Card>().InitializeCard(id, position);
     }
 
 }

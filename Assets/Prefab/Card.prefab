@@ -93,8 +93,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6eeb86ed09fa32b4896c3560eb2568e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sprites:
+  - {fileID: 21300000, guid: f666d01ea9893a84aaaa051addbf121c, type: 3}
+  - {fileID: 21300000, guid: b2bea2bfeba028c4abde8dcbd2b6444f, type: 3}
+  - {fileID: 21300000, guid: 1584710ddc2d2a5458984cab892fc63c, type: 3}
   gameManager: {fileID: 0}
-  card_sprite: {fileID: 0}
   defeat: 0
   losses: 0
 --- !u!61 &2345563585959038418
