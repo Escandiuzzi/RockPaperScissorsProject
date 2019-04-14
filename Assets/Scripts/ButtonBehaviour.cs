@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class ButtonBehaviour : MonoBehaviour
 {
@@ -24,6 +25,11 @@ public class ButtonBehaviour : MonoBehaviour
         player.GetComponent<Player>().SetCard(new_card.GetComponent<Card>());
         new_card.transform.parent = player.transform;
         new_card.GetComponent<Card>().InitializeCard(id, position);
+    }
+
+    public void ReloadButton()
+    {
+        Scene scene = SceneManager.GetActiveScene(); SceneManager.LoadScene(scene.name);
     }
 
 }

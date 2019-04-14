@@ -34,6 +34,9 @@ public class GameManager : MonoBehaviour
     [SerializeField]
     GameObject finalresultPanel;
 
+    [SerializeField]
+    float animationTime;
+
 
     int playerScore;
     int iaScore;
@@ -77,7 +80,7 @@ public class GameManager : MonoBehaviour
         if (destroy)
         {
             time += Time.deltaTime;
-            if (time > 3)
+            if (time > animationTime)
             {
                 Destroy(player_selected_card);
                 Destroy(ia_selected_card);
